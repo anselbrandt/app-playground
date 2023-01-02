@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 export function AddressBar() {
   const pathname = usePathname();
@@ -23,25 +24,29 @@ export function AddressBar() {
         </svg>
       </div>
       <div className="flex space-x-1 text-sm font-medium">
-        <div>
-          <span className="px-2 text-gray-400">acme.com</span>
-        </div>
-        {pathname ? (
+      <Link href="/">
+          <span className="px-2 text-gray-400 hover:text-gray-50">
+            acme.com
+          </span>
+        </Link>
+        {pathname && pathname.length>1 && pathname ? (
           <>
             <span className="text-gray-600">/</span>
             {pathname
               .split('/')
-              .slice(2)
-              .map((segment) => {
+              .slice(1)
+              .map((segment, index) => {
                 return (
                   <React.Fragment key={segment}>
                     <span>
-                      <span
-                        key={segment}
-                        className="animate-[highlight_1s_ease-in-out_1] rounded-full px-1.5 py-0.5 text-gray-100"
-                      >
-                        {segment}
-                      </span>
+                    <Link href={pathname.split('/').slice(0,index+2).join('/')}>
+                        <span
+                          key={segment}
+                          className="animate-[highlight_1s_ease-in-out_1] rounded-full px-1.5 py-0.5 text-gray-400 hover:text-gray-50"
+                        >
+                          {segment}
+                        </span>
+                      </Link>
                     </span>
 
                     <span className="text-gray-600">/</span>
