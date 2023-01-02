@@ -14,13 +14,13 @@ The `app/` directory can coexist with the existing `pages` directory for inc
 1. Install dependencies:
 
 ```sh
-pnpm install
+yarn install
 ```
 
 2. Start the dev server:
 
 ```sh
-pnpm dev
+yarn dev
 ```
 
 ## Documentation
